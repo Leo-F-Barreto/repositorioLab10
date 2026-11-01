@@ -29,7 +29,7 @@ def cliente_vip():
 def test_venda_cliente_normal_cartao(gerenciador, itens_teste, cliente_normal, capsys):
     # Usa o mock_open para evitar a criação de um arquivo real durante o teste
     with patch("builtins.open", mock_open()) as mock_file:
-        gerenciador.processar_venda_e_gerar_relatorio(itens_teste, cliente_normal, 'CARTAO')
+        gerenciador.executar_venda(itens_teste, cliente_normal, 'CARTAO')
 
         # Verifica as saídas impressas no console (stdout)
         captured = capsys.readouterr()
@@ -45,7 +45,7 @@ def test_venda_cliente_normal_cartao(gerenciador, itens_teste, cliente_normal, c
 
 def test_venda_cliente_vip_boleto(gerenciador, itens_teste, cliente_vip, capsys):
     with patch("builtins.open", mock_open()) as mock_file:
-        gerenciador.processar_venda_e_gerar_relatorio(itens_teste, cliente_vip, 'BOLETO')
+        gerenciador.executar_venda(itens_teste, cliente_vip, 'BOLETO')
 
         # O total deve ter 10% de desconto (250.0 * 0.90 = 225.0)
         captured = capsys.readouterr()
