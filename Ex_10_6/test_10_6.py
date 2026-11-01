@@ -1,4 +1,4 @@
-from refatorado_10_6 import ProcessadorFinanceiro
+from Ex_10_6 import ProcessadorFinanceiro
 
 def test_processar_credito(capsys):
     pf = ProcessadorFinanceiro()
