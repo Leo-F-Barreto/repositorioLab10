@@ -1,18 +1,38 @@
-class Funcionario:
-    def __init__(self, nome, cargo, salario, rua, numero, bairro, cidade, estado, cep, ddd, telefone_numero):
-        self.nome = nome
-        self.cargo = cargo
-        self.salario = salario
-        self.rua = rua
-        self.numero = numero
-        self.bairro = bairro
-        self.cidade = cidade
-        self.estado = estado
-        self.cep = cep
-        self.ddd = ddd
-        self.telefone_numero = telefone_numero
+from dataclasses import dataclass
 
-    def exibir_dados(self):
-        print(f"Funcionario: {self.nome} - {self.cargo}")
-        print(f"Contato: ({self.ddd}) {self.telefone_numero}")
-        print(f"Endereço: {self.rua}, {self.numero} - {self.bairro}, {self.cidade}/{self.estado} - CEP: {self.cep}")
+@dataclass
+class Endereco:
+    rua: str
+    numero: str
+    bairro: str
+    cidade: str
+    estado: str
+    cep: str
+
+    def __str__(self) -> str:
+        return f"{self.rua}, {self.numero} - {self.bairro}, {self.cidade}/{self.estado} - CEP: {self.cep}"
+
+
+@dataclass
+class Contato:
+    ddd: str
+    telefone_numero: str
+
+    def __str__(self) -> str:
+        return f"({self.ddd}) {self.telefone_numero}"
+
+
+@dataclass
+class Funcionario:
+    nome: str
+    cargo: str
+    salario: float
+    endereco: Endereco
+    contato: Contato
+
+    def __str__(self) -> str:
+        return (
+            f"Funcionario: {self.nome} - {self.cargo}\n"
+            f"Contato: {self.contato}\n"
+            f"Endereço: {self.endereco}"
+        )
