@@ -1,4 +1,4 @@
-from Ex_10_1 import GerenciadorDeVendas
+from Ex_10_1.Ex_10_1 import GerenciadorDeVendas
 
 import pytest
 from unittest.mock import patch, mock_open
